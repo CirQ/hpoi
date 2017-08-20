@@ -15,17 +15,15 @@ params = {
     "original": '0',
     "itemCategory": '0',
     "category": '60001',
-    "page": ''
-}
-headers = {
-    'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:55.0) Gecko/20100101 Firefox/55.0'
+    "page": 0
 }
 
 for p in range(1, 11):
-    params['page'] = str(p)
-    response = s.get(url, params=params, headers=headers)
+    params['page'] = p
+    response = s.get(url, params=params)
     bs = BeautifulSoup(response.text, 'lxml')
 
     for figure in bs.find_all('figure', class_='album-box-figure'):
-        link = host + figure.find('a')['href']
+        link = figure.find('a')['href']
+        print 'fetching ', link
         fetch(link)
