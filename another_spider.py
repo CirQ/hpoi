@@ -52,7 +52,7 @@ def fetch(link):
             source = next(s.strings).strip()[:-2]
 
         bq = bs.find('blockquote')
-        intro = bq.strings.strip() if bq else ''
+        intro = bq.string.strip() if bq else ''
 
         image_list = []
         for image_div in bs.find_all('div', class_='av-masonry-image-container'):
